@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-gray-50 text-gray-900;
+    font-family: 'Inter',sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  /* Button Styles */
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500;
+  }
+  
+  .btn-danger {
+    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+  }
+  
+  .btn-success {
+    @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+  }
+
+  /* Input Styles */
+  .input {
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .input-error {
+    @apply border-red-500 focus:ring-red-500;
+  }
+
+  /* Card Styles */
+  .card {
+    @apply bg-white rounded-lg shadow-md p-6;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply px-3 py-1 rounded-full text-xs font-semibold;
+  }
+  
+  .badge-pending {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-in-progress {
+    @apply bg-blue-100 text-blue-800;
+  }
+  
+  .badge-completed {
+    @apply bg-green-100 text-green-800;
+  }
+
+  /* Loading Spinner */
+  .spinner {
+    @apply inline-block w-6 h-6 border-4 border-gray-200 border-t-blue-600 rounded-full animate-spin;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-500;
+}
+
+/* Toast Customization */
+.Toastify__toast {
+  @apply rounded-lg shadow-lg;
+}
+
+.Toastify__toast--success {
+  @apply bg-green-600;
+}
+
+.Toastify__toast--error {
+  @apply bg-red-600;
+}
+
+.Toastify__toast--info {
+  @apply bg-blue-600;
+}
+
+.Toastify__toast--warning {
+  @apply bg-yellow-600;
+}
