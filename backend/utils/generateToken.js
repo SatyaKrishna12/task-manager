@@ -14,10 +14,12 @@ const generateToken = (res, userId) => {
 
   // Calculate cookie expiration in milliseconds
   const cookieExpireDays = parseInt(process.env.COOKIE_EXPIRE, 10) || 7;
+  const isProduction = process.env.NODE_ENV === 'production';
+  
   const cookieOptions = {
     httpOnly: true, // Prevents XSS attacks
-    secure: process.env.NODE_ENV === 'production', // HTTPS only in production
-    sameSite: 'strict', // Prevents CSRF attacks
+    secure: isProduction, // HTTPS only in production
+    sameSite: isProduction ? 'none' : 'lax', // 'none' for cross-origin in production, 'lax' for development
     maxAge: cookieExpireDays * 24 * 60 * 60 * 1000, // Convert days to milliseconds
   };
 
@@ -32,8 +34,12 @@ const generateToken = (res, userId) => {
  * @param {object} res - Express response object
  */
 const clearToken = (res) => {
+  const isProduction = process.env.NODE_ENV === 'production';
+  
   res.cookie('token', '', {
     httpOnly: true,
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     expires: new Date(0), // Set to past date to clear
   });
 };
