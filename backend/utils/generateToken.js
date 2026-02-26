@@ -21,6 +21,7 @@ const generateToken = (res, userId) => {
     secure: isProduction, // HTTPS only in production
     sameSite: isProduction ? 'none' : 'lax', // 'none' for cross-origin in production, 'lax' for development
     maxAge: cookieExpireDays * 24 * 60 * 60 * 1000, // Convert days to milliseconds
+    path: '/', // Cookie available for all routes
   };
 
   // Set cookie
@@ -40,6 +41,7 @@ const clearToken = (res) => {
     httpOnly: true,
     secure: isProduction,
     sameSite: isProduction ? 'none' : 'lax',
+    path: '/',
     expires: new Date(0), // Set to past date to clear
   });
 };
